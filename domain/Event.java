@@ -68,9 +68,11 @@ public class Event {
     public void createTickets(){
         int ticketNumber = 1;
         for(Location location : locations){
-            for(int i = 1; i <= location.getLocationCapacity(); i++){
-                tickets.add(new Ticket(ticketNumber, i, location.getLocationName()));
-                ticketNumber += 1;
+            if(location.getLocationCapacity() > 0){
+                for(int i = 1; i <= location.getLocationCapacity(); i++){
+                    tickets.add(new Ticket(ticketNumber, i, location.getLocationName()));
+                    ticketNumber += 1;
+                }
             }
         }
     }

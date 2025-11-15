@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 import java.util.List;
 
 public class TicketOffice {
@@ -16,6 +17,8 @@ public class TicketOffice {
         this.ticketOfficeEmail = ticketOfficeEmail;
         this.ticketOfficePhoneNumber = ticketOfficePhoneNumber;
         this.ticketOfficeCity = ticketOfficeCity;
+        this.customers = new LinkedList<>();
+        this.events = new LinkedList<>();
     }
 
     public void setTicketOfficeAddress(String newTicketOfficeAddress){
@@ -42,9 +45,20 @@ public class TicketOffice {
         }
     }
 
+    public void addCustomer(int customerId, String customerName, String customerLastname,
+                    String customerAddress, String customerEmail, String customerPhoneNumber){
+            customers.add(new Customer(customerId, customerName, customerLastname, customerAddress, customerEmail, customerPhoneNumber));
+    }
+
+    public void addEvents(int eventId, String eventName, String eventDate, int eventTime, String eventType){
+        events.add(new Event(eventId, eventName, eventDate, eventTime, eventType));
+    }
+
     public int getTicketOfficeNit(){return ticketOfficeNit;}
     public String getTicketOfficeAddress(){return ticketOfficeAddress;}
     public String getTicketOfficeEmail(){return ticketOfficeEmail;}
     public String getTicketOfficePhoneNumber(){return ticketOfficePhoneNumber;}
     public String getTicketOfficeCity(){return ticketOfficeCity;}
+    public List<Customer> getCustomers(){return customers;}
+    public List<Event> getEvents(){return events;}
 }
