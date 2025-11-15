@@ -70,6 +70,7 @@ public class TicketOffice {
         
         ticketsRegister.add(ticket);
         event.addTicket(ticket);
+        customer.saveTicket(ticket);
         
         return ticket;
     }

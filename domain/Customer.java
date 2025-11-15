@@ -37,6 +37,10 @@ public class Customer {
         }
     }
 
+    public void saveTicket(Ticket ticket){
+        tickets.add(ticket);
+    }
+
     public int getCustomerId(){return customerId;}
     public String getCustomerName(){return customerName;}
     public String getCustomerLastname(){return customerLastname;}
