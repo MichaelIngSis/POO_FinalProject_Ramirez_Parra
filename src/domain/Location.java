@@ -1,3 +1,4 @@
+package domain;
 public class Location {
     private String locationName;
     private int locationCapacity; //Hacer una agregación de Location en Event

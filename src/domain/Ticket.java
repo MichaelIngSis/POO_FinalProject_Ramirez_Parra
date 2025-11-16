@@ -1,3 +1,4 @@
+package domain;
 public class Ticket {
 
     private static int globalCounter = 1;

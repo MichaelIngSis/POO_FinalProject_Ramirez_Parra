@@ -1,3 +1,4 @@
+package domain;
 public class Venue {
     private static int venueCounter = 1;
     private int venueId;
