@@ -52,9 +52,6 @@ public class AddLocationUI extends JFrame {
                 Location loc = new Location(locName, locCapacity);
 
                 office.addLocationToEvent(event, loc);
-                String basePath = System.getProperty("user.dir");
-                String filePath = basePath + java.io.File.separator + "ticketoffice.dat";
-                data.TicketOfficeStorage.save(office, filePath);
 
                 JOptionPane.showMessageDialog(this,
                         "Localidad agregada correctamente al evento: " + event.getEventName());
