@@ -30,8 +30,8 @@ public class DemoData {
         event2.createLocations("General", 2000);
 
         // Registrar eventos en la oficina
-        office.addEvents(event1);
-        office.addEvents(event2);
+        office.addEvent(event1);
+        office.addEvent(event2);
 
         // Cliente ficticio
         Customer customer = new Customer(

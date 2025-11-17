@@ -1,43 +1,49 @@
 package ui;
 
-import domain.Event;
 import domain.TicketOffice;
-import domain.DemoData;
+import domain.Event;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class EventSelectionUI extends JFrame {
 
-    private JComboBox<String> eventCombo;
     private TicketOffice office;
 
-    public EventSelectionUI() {
-
-        // Aquí deberías pasar un TicketOffice ya configurado
-        office = DemoData.getTicketOfficeWithSampleData();
+    public EventSelectionUI(TicketOffice office) {
+        this.office = office;
 
         setTitle("Seleccionar Evento");
         setSize(400, 300);
         setLocationRelativeTo(null);
+        setLayout(new BorderLayout());
 
-        eventCombo = new JComboBox<>();
+        JLabel title = new JLabel("Seleccione un evento:", SwingConstants.CENTER);
+        add(title, BorderLayout.NORTH);
 
-        for (Event ev : office.getEvents()) {
-            eventCombo.addItem(ev.getEventName());
+        // Lista de eventos
+        DefaultListModel<String> model = new DefaultListModel<>();
+        for (Event e : office.getEvents()) {
+            model.addElement(e.getEventName());
         }
 
-        JButton nextBtn = new JButton("Continuar");
+        JList<String> eventList = new JList<>(model);
+        add(new JScrollPane(eventList), BorderLayout.CENTER);
 
-        nextBtn.addActionListener(e -> {
-            int index = eventCombo.getSelectedIndex();
-            Event selected = office.getEvents().get(index);
-            new LocationSelectionUI(selected, office).setVisible(true);
+        JButton continueBtn = new JButton("Continuar");
+        continueBtn.addActionListener(e -> {
+            int index = eventList.getSelectedIndex();
+            if (index == -1) {
+                JOptionPane.showMessageDialog(this, "Seleccione un evento");
+                return;
+            }
+
+            Event event = office.getEvents().get(index);
+            new TicketPurchaseUI(office, event).setVisible(true);
             dispose();
         });
 
-        setLayout(new BorderLayout());
-        add(eventCombo, BorderLayout.CENTER);
-        add(nextBtn, BorderLayout.SOUTH);
+        add(continueBtn, BorderLayout.SOUTH);
     }
 }
+

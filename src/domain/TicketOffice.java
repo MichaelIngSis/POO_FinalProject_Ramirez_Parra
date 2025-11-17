@@ -52,18 +52,22 @@ public class TicketOffice implements Serializable{
     public void addCustomer(int customerId, String customerName, String customerLastname,
                     String customerAddress, String customerEmail, String customerPhoneNumber){
             customers.add(new Customer(customerId, customerName, customerLastname, customerAddress, customerEmail, customerPhoneNumber));
+            autosave();
     }
 
     public void addCustomer(Customer customer){
         customers.add(customer);
+        autosave();
     }
 
-    public void addEvents(String eventName, String eventDate, int eventTime, String eventType){
+    public void addEvent(String eventName, String eventDate, int eventTime, String eventType){
         events.add(new Event(eventName, eventDate, eventTime, eventType));
+        autosave();
     }
 
-    public void addEvents(Event event){
+    public void addEvent(Event event){
         events.add(event);
+        autosave();
     }
 
     public Ticket sellTicket(Event event, Customer customer, Location location){
@@ -83,6 +87,36 @@ public class TicketOffice implements Serializable{
         customer.saveTicket(ticket);
         
         return ticket;
+    }
+
+    public boolean sellTickets(Event event, Location location, Customer customer, int qty) {
+
+    // 1. Verificar que la localidad pertenece al evento
+        if (!event.getLocations().contains(location)) {
+            throw new IllegalArgumentException("La localidad no pertenece al evento.");
+        }
+
+    // 2. Verificar disponibilidad
+        if (location.getAvailableSeats() < qty) {
+            return false; // no alcanza, la UI mostrará mensaje
+        }
+
+        // 3. Crear los tickets uno por uno usando sellTicket()
+        for (int i = 0; i < qty; i++) {
+            sellTicket(event, customer, location);
+        }
+        autosave();
+        return true; // compra exitosa
+    }
+
+    private void autosave() {
+        try {
+            String basePath = System.getProperty("user.dir");
+            String path = basePath + File.separator + "ticketoffice.dat";
+            data.TicketOfficeStorage.save(this, path);
+        } catch (Exception e) {
+            System.out.println("Error al autoguardar: " + e.getMessage());
+        }
     }
 
     public List<Ticket> getTickets(){return ticketsRegister;}

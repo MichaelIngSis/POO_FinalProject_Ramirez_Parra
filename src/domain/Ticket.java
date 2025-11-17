@@ -23,6 +23,7 @@ public class Ticket implements Serializable{
 
     public int getTicketNumber(){return ticketNumber;}
     public int getTicketSeat(){return ticketSeat;}
-    public int getCustomerId(){return customer.getCustomerId();}
-    public String getCustomerName(){return customer.getCustomerName();}
+    public Event getEvent(){return event;}
+    public Location getLocation(){return location;}
+    public Customer getCustomer(){return customer;}
 }
