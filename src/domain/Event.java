@@ -52,28 +52,50 @@ public class Event implements Serializable{
         this.venue = venue;
     }
 
-    public void createLocations(Location loc){
-        int totalLocationCapacity = 0;
-        if(locations != null){
-            for(Location location : locations){
-                totalLocationCapacity += location.getLocationCapacity();
-            }
-        }
-        
-        if(totalLocationCapacity + loc.getLocationCapacity() <= venue.getVenueCapacity()){
+    /*public void createLocations(Location loc){
+        if(isLocationCapacityValid(loc, loc.getLocationCapacity())){
             locations.add(loc);
         }
-    }
+    }*/
+
     public void createLocations(String locationName, int locationCapacity){
-        int totalLocationCapacity = 0;
-        if(locations != null){
-            for(Location location : locations){
-                totalLocationCapacity += location.getLocationCapacity();
-            }
-        }
-        if(totalLocationCapacity + locationCapacity <= venue.getVenueCapacity()){
+        if(isLocationCapacityValid(locationCapacity)){
             locations.add(new Location(locationName, locationCapacity));
         }
+    }
+
+    public boolean isLocationCapacityValid(int newCapacity){
+        int totalLocationCapacity = 0;
+        if(locations != null){
+            for (Location location : locations){
+                    totalLocationCapacity += location.getLocationCapacity();
+            }
+        }
+        return (totalLocationCapacity + newCapacity <= venue.getVenueCapacity()) ? true : false;
+    }
+    
+    public boolean isLocationCapacityValid(Location loc, int newCapacity){
+        int totalLocationCapacity = 0;
+        if(locations != null){
+            for (Location location : locations){
+                if(loc == location){
+                }else{
+                    totalLocationCapacity += location.getLocationCapacity();
+                }
+            }
+        }
+        return (totalLocationCapacity + newCapacity <= venue.getVenueCapacity()) ? true : false;
+    }
+
+    public void updateLocation(Location loc, String newName, int newCapacity) {
+        if(isLocationCapacityValid(loc,newCapacity)){
+            loc.setLocationName(newName);
+            loc.setLocationCapacity(newCapacity);
+        }
+    }
+
+    public void removeLocation(Location loc){
+        locations.remove(loc);
     }
 
     public List<Location> getLocations(){

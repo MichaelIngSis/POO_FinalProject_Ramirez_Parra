@@ -126,13 +126,25 @@ public class TicketOffice implements Serializable{
         autosave();
     }
 
-    public void addLocationToEvent(Event event, Location loc) {
+    public void addLocationToEvent(Event event, String name, int capacity) {
         if (event == null) {
             throw new IllegalArgumentException("Evento no encontrado");
         } 
-        event.createLocations(loc);   // modificar el evento
+        event.createLocations(name, capacity);   // modificar el evento
         autosave();            // ← AUTOGUARDADO AQUÍ
     }
+
+
+    public void updateLocationOfEvent(Event ev, Location loc, String newName, int newCapacity) {
+        ev.updateLocation(loc, newName, newCapacity);
+        autosave();
+    }
+
+    public void removeLocationFromEvent(Event ev, Location loc) {
+        ev.removeLocation(loc);
+        autosave();
+    }
+
 
     public boolean removeVenue(int venueId) {
 
@@ -220,7 +232,7 @@ public class TicketOffice implements Serializable{
         }
 
         return false;
-}
+    }
 
 
 

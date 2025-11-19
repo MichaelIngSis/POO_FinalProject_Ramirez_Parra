@@ -54,14 +54,11 @@ public class MainMenu extends JFrame {
             dispose();
         });
 
-        JButton locBtn = new JButton("Agregar Localidad");
-        locBtn.addActionListener(e ->{
+        JButton manageLocationBtn = new JButton("Administrar Localidades");
+        manageLocationBtn.addActionListener(e -> {
+            new ManageLocationsUI(office).setVisible(true);
             dispose();
-            new AddLocationUI(office).setVisible(true);
         });
-
-
-
 
         // Agregar botones al panel
         panel.add(buyTicketBtn);
@@ -69,7 +66,8 @@ public class MainMenu extends JFrame {
         panel.add(manageVenuesBtn);
         panel.add(manageEventsBtn);
         panel.add(manageCustomerBtn);
-        panel.add(locBtn);
+        panel.add(manageLocationBtn);
+
 
         add(panel);
     }

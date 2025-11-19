@@ -50,4 +50,9 @@ public class Location implements Serializable{
     public String getLocationName(){return locationName;}
     public int getLocationCapacity(){return locationCapacity;}
     public int getAvailableSeats(){return availableSeats;}
+
+    @Override
+    public String toString() {
+        return locationName + " - " + locationCapacity ;
+    }
 }
