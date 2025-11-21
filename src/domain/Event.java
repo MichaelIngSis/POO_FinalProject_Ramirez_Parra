@@ -63,9 +63,10 @@ public class Event implements Serializable{
     }
 
     public void createLocations(String locationName, int locationCapacity){
-        if(isLocationCapacityValid(locationCapacity)){
-            locations.add(new Location(locationName, locationCapacity));
+        if(!isLocationCapacityValid(locationCapacity)){
+            throw new IllegalArgumentException("No se puede agregar la localidad. Capacidad Excedida");
         }
+        locations.add(new Location(locationName, locationCapacity));
     }
 
     public boolean isLocationCapacityValid(int newCapacity){
@@ -92,10 +93,11 @@ public class Event implements Serializable{
     }
 
     public void updateLocation(Location loc, String newName, int newCapacity) {
-        if(isLocationCapacityValid(loc,newCapacity)){
-            loc.setLocationName(newName);
-            loc.setLocationCapacity(newCapacity);
+        if(!isLocationCapacityValid(loc,newCapacity)){
+            throw new IllegalArgumentException("No se puede hacer el cambio. Capacidad excedida");
         }
+        loc.setLocationName(newName);
+        loc.setLocationCapacity(newCapacity);
     }
 
     public void removeLocation(Location loc){

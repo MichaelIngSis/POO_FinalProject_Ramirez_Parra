@@ -88,10 +88,9 @@ public class TicketPurchaseUI extends JFrame {
                 return;
             }
 
-            // realizar compra
-            boolean success = office.sellTickets(event, location, buyer, qty);
-
-            if (success) {
+            //Proceso de compra
+            try{
+                office.sellTickets(event, location, buyer, qty);
                 JOptionPane.showMessageDialog(this,
                     "Compra realizada con éxito.\n" +
                     "Cliente: " + buyer.getCustomerName() + "\n" +
@@ -101,9 +100,9 @@ public class TicketPurchaseUI extends JFrame {
                 new MainMenu(office).setVisible(true);  // ← REGRESAR AL MENÚ
                 dispose(); // cerrar ventana actual
 
-            } else {
+            } catch(IllegalArgumentException | IllegalStateException ex){
                 JOptionPane.showMessageDialog(this,
-                "Error: la compra no pudo realizarse.");
+                ex.getMessage());
             }
         });
 

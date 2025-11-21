@@ -74,12 +74,13 @@ public class TicketOffice implements Serializable{
         autosave();
     }
 
+    //Sell ticket para comprar uno por uno
     public Ticket sellTicket(Event event, Customer customer, Location location){
         if(!event.getLocations().contains(location)){
             throw new IllegalArgumentException("Esta localidad no pertenece al evento!");
         }
         if(!location.hasAvailability()){
-            throw new IllegalStateException("No hay más asientos ddisponibles en: " + location.getLocationName());
+            throw new IllegalStateException("No hay más asientos disponibles en: " + location.getLocationName());
         }
         
         int seatNumber = location.assignSeat();
@@ -93,6 +94,7 @@ public class TicketOffice implements Serializable{
         return ticket;
     }
 
+    //Sell ticket que se le pasa al frontend y hace toda la compra de los tickets
     public boolean sellTickets(Event event, Location location, Customer customer, int qty) {
 
     // 1. Verificar que la localidad pertenece al evento
@@ -102,7 +104,7 @@ public class TicketOffice implements Serializable{
 
     // 2. Verificar disponibilidad
         if (location.getAvailableSeats() < qty) {
-            return false; // no alcanza, la UI mostrará mensaje
+            throw new IllegalStateException("No hay suficientes asientos disponibles en: " + location.getLocationName()); // no alcanza, la UI mostrará mensaje
         }
 
         // 3. Crear los tickets uno por uno usando sellTicket()
