@@ -4,7 +4,6 @@ import java.io.*;
 
 public class Ticket implements Serializable{
 
-    private static int globalCounter = 1;
     private int ticketNumber;
     private int ticketSeat;
     private Location location;
@@ -12,7 +11,7 @@ public class Ticket implements Serializable{
     private Event event;
 
     public Ticket(Event event, Location location, Customer customer, int ticketSeat){
-        this.ticketNumber = globalCounter ++;
+        this.ticketNumber = event.generateTicketNumber();
         this.ticketSeat = ticketSeat;
         this.location = location;
         this.event = event;

@@ -10,6 +10,7 @@ public class Event implements Serializable{
     private int eventTime;
     private String eventType;
     private Venue venue;
+    private int ticketCounter = 1;
     private List<Ticket> tickets;
     private List<Location> locations;
 
@@ -115,6 +116,10 @@ public class Event implements Serializable{
     @Override
     public String toString() {
         return eventId + " - " + eventName + " (" + eventDate + ")";
+    }
+
+    public int generateTicketNumber(){
+        return ticketCounter ++;
     }
 
     public List<Ticket> getTickets(){return tickets;}

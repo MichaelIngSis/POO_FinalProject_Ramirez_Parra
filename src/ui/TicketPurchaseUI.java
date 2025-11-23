@@ -47,13 +47,6 @@ public class TicketPurchaseUI extends JFrame {
             locationBox.addItem(loc.getLocationName() + " (Disp: " + loc.getAvailableSeats() + ")");
         }
 
-        if (event.getLocations().isEmpty()) {
-            JOptionPane.showMessageDialog(this,
-                    "Este evento no tiene localidades asignadas.");
-            dispose();
-            return;
-        }
-
         // --- Cantidad de tickets ---
         SpinnerNumberModel qtyModel =
                 new SpinnerNumberModel(1, 1, 100, 1);

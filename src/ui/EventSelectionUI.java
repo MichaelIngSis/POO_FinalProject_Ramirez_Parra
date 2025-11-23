@@ -53,8 +53,12 @@ public class EventSelectionUI extends JFrame {
             }
 
             Event event = office.getEvents().get(index);
+            if(event.getLocations().isEmpty()){
+                JOptionPane.showMessageDialog(this,"No hay localidades asignadas a este evento");
+            }else{
             new TicketPurchaseUI(office, event).setVisible(true);
             dispose();
+            }
         });
 
         backBtn.addActionListener(e -> {

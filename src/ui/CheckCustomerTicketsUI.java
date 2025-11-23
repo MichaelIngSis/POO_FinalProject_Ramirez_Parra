@@ -75,6 +75,7 @@ public class CheckCustomerTicketsUI extends JFrame {
               .append("Fecha: ").append(t.getEvent().getEventDate()).append("\n")
               .append("Localidad: ").append(t.getLocation().getLocationName()).append("\n")
               .append("Asiento: ").append(t.getTicketSeat()).append("\n")
+              .append("Número de Tiquete: ").append(t.getTicketNumber()).append("\n")
               .append("--------------\n");
         }
         return sb.toString();
