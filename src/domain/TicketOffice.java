@@ -7,7 +7,7 @@ import data.CSVEncoder;
 
 public class TicketOffice implements Serializable{
     private int eventCounter = 3;
-    private int venueCounter = 2;
+    private int venueCounter = 1;
     private int ticketOfficeNit;
     private String ticketOfficeAddress;
     private String ticketOfficeEmail;
