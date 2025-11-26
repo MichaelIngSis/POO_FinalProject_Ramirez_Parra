@@ -5,6 +5,12 @@ import java.util.List;
 
 import data.CSVEncoder;
 
+/**
+ * Represents the main hub or management system for the entire ticket office operation.
+ * This class manages lists of customers, events, venues, and registered tickets.
+ * and maintains counter for unique IDs.
+ */
+
 public class TicketOffice implements Serializable{
     private int eventCounter = 1;
     private int venueCounter = 1;
@@ -18,6 +24,7 @@ public class TicketOffice implements Serializable{
     private List<Ticket> ticketsRegister;
     private List<Venue> venues;
 
+    //Initializes the ticket office main object with contact information and empty data repositories.
     public TicketOffice(int ticketOfficeNit, String ticketOfficeAddress, String ticketOfficeEmail, String ticketOfficePhoneNumber,
             String ticketOfficeCity){
         this.ticketOfficeNit = ticketOfficeNit;
@@ -31,41 +38,54 @@ public class TicketOffice implements Serializable{
         this.venues = new LinkedList<>();
     }
 
+    //Update ticket office address if new address is not empty
     public void setTicketOfficeAddress(String newTicketOfficeAddress){
         if(!newTicketOfficeAddress.equals("")){
             ticketOfficeAddress = newTicketOfficeAddress;
         }
     }
-
+    
+    //Update ticket office email if new email is not empty
     public void setTicketOfficeEmail(String newTicketOfficeEmail){
         if(!newTicketOfficeEmail.equals("")){
             ticketOfficeEmail = newTicketOfficeEmail;
         }
     }
 
+    //Update ticket office phone number if new phone number is not empty
     public void setTicketOfficePhoneNumber(String newTicketOfficePhoneNumber){
         if(!newTicketOfficePhoneNumber.equals("")){
             ticketOfficePhoneNumber = newTicketOfficePhoneNumber;
         }
     }
 
+    //Update ticket office city if new city is not empty
     public void setTicketOfficeCity(String newTicketOfficeCity){
         if(!newTicketOfficeCity.equals("")){
             ticketOfficeCity = newTicketOfficeCity;
         }
     }
 
-    public void addCustomer(Customer customer){
+    //Add a new customer record to the system´s customer list and triggers an autosave operation.
+    public void addCustomer(Customer customer) throws Exception{
         customers.add(customer);
         autosave();
     }
 
-    public void addEvent(String eventName, String eventDate, int eventTime, String eventType, Venue venue){
+    /**
+     * Creates a new Event object with a unique, automatically generated ID and adds it to the event list.
+     * Triggers an autosave operation after adding the event
+     */
+    public void addEvent(String eventName, String eventDate, int eventTime, String eventType, Venue venue) throws Exception{
         events.add(new Event(eventCounter++, eventName, eventDate, eventTime, eventType, venue));
         autosave();
     }
 
-    //Sell ticket para comprar uno por uno
+    /**
+     * Processes the sale of a new ticket, managing the full transaction lifecycle.
+     * Validates that the location belongs to the event and has availability, assigns a seat,
+     * records the ticket in all relevant lists (office, event, customer), and returns the new ticket object.
+    */
     public Ticket sellTicket(Event event, Customer customer, Location location){
         if(!event.getLocations().contains(location)){
             throw new IllegalArgumentException("Esta localidad no pertenece al evento!");
@@ -85,43 +105,40 @@ public class TicketOffice implements Serializable{
         return ticket;
     }
 
-    //Sell ticket que se le pasa al frontend y hace toda la compra de los tickets
-    public boolean sellTickets(Event event, Location location, Customer customer, int qty) {
-
-    // 1. Verificar que la localidad pertenece al evento
+    /**
+     * Processes the sale of a specified quantity of tickets for a specific event and location
+     * Validates that the location belongs to the event and has sufficient availability
+     * before processing each individual ticket sale and triggering an autosave.
+     */
+    public boolean sellTickets(Event event, Location location, Customer customer, int qty) throws Exception {
         if (!event.getLocations().contains(location)) {
             throw new IllegalArgumentException("La localidad no pertenece al evento.");
         }
 
-    // 2. Verificar disponibilidad
         if (location.getAvailableSeats() < qty) {
             throw new IllegalStateException("No hay suficientes asientos disponibles en: " + location.getLocationName()); // no alcanza, la UI mostrará mensaje
         }
 
-        // 3. Crear los tickets uno por uno usando sellTicket()
         for (int i = 0; i < qty; i++) {
             sellTicket(event, customer, location);
         }
         autosave();
-        return true; // compra exitosa
+        return true;
     }
 
-    public void autosave() {
-        try {
-            String basePath = System.getProperty("user.dir");
-            String path = basePath + File.separator + "ticketoffice.dat";
-            data.TicketOfficeStorage.save(this, path);
-        } catch (Exception e) {
-            System.out.println("Error al autoguardar: " + e.getMessage());
-        }
+    //Persissts the current state of the ticket office system data to a local file
+    public void autosave() throws Exception{
+        String basePath = System.getProperty("user.dir");
+        String path = basePath + File.separator + "ticketoffice.dat";
+        data.TicketOfficeStorage.save(this, path);
     }
 
-    public void addVenue(String name, String address, int capacity, String characteristic){
+    public void addVenue(String name, String address, int capacity, String characteristic) throws Exception{
         venues.add(new Venue(venueCounter++, name, address, capacity, characteristic));
         autosave();
     }
 
-    public void addLocationToEvent(Event event, String name, int capacity) {
+    public void addLocationToEvent(Event event, String name, int capacity) throws Exception{
         if (event == null) {
             throw new IllegalArgumentException("Evento no encontrado");
         } 
@@ -130,18 +147,26 @@ public class TicketOffice implements Serializable{
     }
 
 
-    public void updateLocationOfEvent(Event ev, Location loc, String newName, int newCapacity) {
+    public void updateLocationOfEvent(Event ev, Location loc, String newName, int newCapacity) throws Exception{
         ev.updateLocation(loc, newName, newCapacity);
         autosave();
     }
 
-    public void removeLocationFromEvent(Event ev, Location loc) {
+    
+    public void removeLocationFromEvent(Event ev, Location loc) throws Exception{
+        for(Event e : events){
+            for (Ticket ticket : e.getTickets()){
+                if(ticket.getLocation() == loc){
+                    throw new IllegalStateException("Ya hay tickets vendidos para esta localidad");
+                }
+            }
+        }
         ev.removeLocation(loc);
         autosave();
     }
 
 
-    public boolean removeVenue(int venueId) {
+    public boolean removeVenue(int venueId) throws Exception{
 
         Venue venueToRemove = null;
 
@@ -189,7 +214,8 @@ public class TicketOffice implements Serializable{
         return true;
     }
 
-    public boolean removeEvent(int eventId) {
+    
+    public boolean removeEvent(int eventId) throws Exception{
         Event toRemove = null;
 
         for (Event ev : events) {
@@ -199,17 +225,21 @@ public class TicketOffice implements Serializable{
             }
         }
 
-        if (toRemove != null) {
+        if(toRemove != null){
+            if(!toRemove.getTickets().isEmpty()){
+                throw new IllegalStateException("Ya se han vendido tiquetes para este evento");
+            }
+
             events.remove(toRemove);
             autosave(); // ⬅ autoguardado inmediato
             return true;
         }
-
+        
         return false; // No encontrado
     }
 
 
-    public boolean removeCustomer(int id) {
+    public boolean removeCustomer(int id) throws Exception{
         Customer target = null;
 
         // Buscar el cliente

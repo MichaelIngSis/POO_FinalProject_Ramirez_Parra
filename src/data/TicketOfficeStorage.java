@@ -3,12 +3,10 @@ import domain.TicketOffice;
 import java.io.*;
 public class TicketOfficeStorage {
     
-    public static void save(TicketOffice ticketOffice, String filename){
+    public static void save(TicketOffice ticketOffice, String filename) throws IOException {
+        // Eliminamos el try-catch de aquí y añadimos "throws IOException" a la firma
         try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename))){
             out.writeObject(ticketOffice);
-            System.out.println("Enterprise data saved successfully");
-        }catch(IOException e){
-            System.err.println("Error saving enterprise data: "+ e.getMessage());
         }
     }
 

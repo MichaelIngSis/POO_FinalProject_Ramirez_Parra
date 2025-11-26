@@ -84,10 +84,14 @@ public class AddEventUI extends JFrame {
 
                 JOptionPane.showMessageDialog(this, 
                     "Evento agregado correctamente");
-                dispose();
-                new ManageEventsUI(office).setVisible(true);
-            } catch (Exception ex) {
+                
+            } catch (IllegalArgumentException ex) {
                 JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+            } catch (Exception ex){
+                JOptionPane.showMessageDialog(this, "Error al guardar el archivo");
+            } finally{
+                new ManageEventsUI(office).setVisible(true);
+                dispose();
             }
         });
 

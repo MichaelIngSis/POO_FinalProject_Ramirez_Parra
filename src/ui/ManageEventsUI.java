@@ -52,8 +52,8 @@ public class ManageEventsUI extends JFrame {
 
 
         addBtn.addActionListener(e -> {
-            new AddEventUI(office).setVisible(true);
             dispose();
+            new AddEventUI(office).setVisible(true);
         });
 
 
@@ -78,9 +78,13 @@ public class ManageEventsUI extends JFrame {
             );
 
             if (opt == JOptionPane.YES_OPTION) {
+                try{
                 office.removeEvent(ev.getEventId());
                 office.autosave();
                 refreshList(searchField.getText());
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(this, "No se puede eliminar porque ya se han vendido tiquetes para este evento.");
+                }
             }
         });
 
@@ -91,9 +95,8 @@ public class ManageEventsUI extends JFrame {
                 JOptionPane.showMessageDialog(this, "Seleccione un evento.");
                 return;
             }
-
-            new EditEventUI(office, ev).setVisible(true);
             dispose();
+            new EditEventUI(office, ev).setVisible(true);
         });
 
         // ---- Acción Volver ----

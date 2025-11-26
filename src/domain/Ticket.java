@@ -1,7 +1,11 @@
 package domain;
 
 import java.io.*;
-
+/**
+ * Represents a single ticket entity for an event purchase.
+ * This class links the ticket number, assigned seat, specific location
+ * the purchasing customer, and the event itself
+ */
 public class Ticket implements Serializable{
 
     private int ticketNumber;
@@ -10,6 +14,7 @@ public class Ticket implements Serializable{
     private Customer customer;
     private Event event;
 
+    //Initializess a new ticket, generating a unique ID and linking all associated event, location, and customer data.
     public Ticket(Event event, Location location, Customer customer, int ticketSeat){
         this.ticketNumber = event.generateTicketNumber();
         this.ticketSeat = ticketSeat;
@@ -18,8 +23,7 @@ public class Ticket implements Serializable{
         this.customer = customer;
     }
 
-
-
+    //The following methods return the properties of the ticket.
     public int getTicketNumber(){return ticketNumber;}
     public int getTicketSeat(){return ticketSeat;}
     public Event getEvent(){return event;}

@@ -17,7 +17,11 @@ public class App {
 
             if (office == null) {
                 office = DemoData.getTicketOfficeWithSampleData();
-                data.TicketOfficeStorage.save(office, filePath); //  Guardar primera vez
+                try{
+                    data.TicketOfficeStorage.save(office, filePath); //  Guardar primera vez
+                }catch(Exception e){
+                    
+                }
             }
 
             new MainMenu(office).setVisible(true);

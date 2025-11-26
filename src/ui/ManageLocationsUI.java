@@ -129,8 +129,13 @@ public class ManageLocationsUI extends JFrame {
                     JOptionPane.YES_NO_OPTION);
 
             if (ok == JOptionPane.YES_OPTION) {
-                office.removeLocationFromEvent(ev, loc);
-                refreshList("");
+                try{
+                    office.removeLocationFromEvent(ev, loc);
+                    refreshList("");
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(this, "No se pudo eliminar la localidad, ya que hay tiquetes vendidos");
+                }
+                
             }
         });
 

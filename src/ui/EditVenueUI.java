@@ -35,19 +35,23 @@ public class EditVenueUI extends JFrame{
         add(backBtn); add(saveBtn);
 
         saveBtn.addActionListener(e -> {
-            venue.setVenueName(name.getText());
-            venue.setVenueCharacteristic((String) type.getSelectedItem());
-            venue.setVenueAddress(addr.getText());
-            venue.setVenueCapacity(Integer.parseInt(cap.getText()));
-            office.autosave();
-
-            dispose();
-            new ManageVenuesUI(office).setVisible(true);
+            try{
+                venue.setVenueName(name.getText());
+                venue.setVenueCharacteristic((String) type.getSelectedItem());
+                venue.setVenueAddress(addr.getText());
+                venue.setVenueCapacity(Integer.parseInt(cap.getText()));
+                office.autosave();
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(this, "Error al guardar el archivo");
+            }finally{
+                dispose();
+                new ManageVenuesUI(office).setVisible(true);
+            }
         });
 
         backBtn.addActionListener(e -> {
-            new ManageVenuesUI(office).setVisible(true);
             dispose();
+            new ManageVenuesUI(office).setVisible(true);
         });
     }
 }

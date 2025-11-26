@@ -89,13 +89,14 @@ public class TicketPurchaseUI extends JFrame {
                     "Cliente: " + buyer.getCustomerName() + "\n" +
                     "Localidad: " + location.getLocationName() + "\n" +
                     "Tickets: " + qty);
-
-                new MainMenu(office).setVisible(true);  // ← REGRESAR AL MENÚ
-                dispose(); // cerrar ventana actual
-
             } catch(IllegalArgumentException | IllegalStateException ex){
                 JOptionPane.showMessageDialog(this,
                 ex.getMessage());
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(this, "Se presenta un problema al guardar el archivo");
+            }finally{
+                dispose();
+                new MainMenu(office).setVisible(true);
             }
         });
 

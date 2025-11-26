@@ -53,8 +53,8 @@ public class ManageVenuesUI extends JFrame {
 
         // ======== Acción agregar ========
         addBtn.addActionListener(e -> {
-            new AddVenueUI(office).setVisible(true);   // UI para agregar
             dispose();
+            new AddVenueUI(office).setVisible(true);   // UI para agregar
         });
 
         // ======== Acción editar ========
@@ -64,8 +64,8 @@ public class ManageVenuesUI extends JFrame {
                 JOptionPane.showMessageDialog(this, "Selecciona un venue.");
                 return;
             }
-            new EditVenueUI(office, v).setVisible(true);
             dispose();
+            new EditVenueUI(office, v).setVisible(true);
         });
 
         // ======== Acción borrar ========
@@ -75,14 +75,18 @@ public class ManageVenuesUI extends JFrame {
                 JOptionPane.showMessageDialog(this, "Selecciona un venue.");
                 return;
             }
-            office.removeVenue(v.getVenueId());
-            refreshList("");
+            try{
+                office.removeVenue(v.getVenueId());
+                refreshList("");
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(this,"Error al guardar el archivo");
+            }
         });
 
         // ======== Acción volver ========
         backBtn.addActionListener(e -> {
-            new MainMenu(office).setVisible(true);
             dispose();
+            new MainMenu(office).setVisible(true);
         });
     }
 

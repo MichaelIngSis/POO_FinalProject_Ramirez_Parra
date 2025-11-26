@@ -16,13 +16,23 @@ public class DemoData {
         );
 
         //Add venues to the office instance. 
-        office.addVenue("Aula Máxima", "Carrera 20", 3000, "Eventos de Música");
-        office.addVenue("Estadio Palogrande", "La Estrella", 30000, "Eventos Deportivos");
+        try{
+          office.addVenue("Aula Máxima", "Carrera 20", 3000, "Eventos de Música");
+          office.addVenue("Estadio Palogrande", "La Estrella", 30000, "Eventos Deportivos");
+        }catch(Exception e){
+
+        }
+
 
 
         //Add events to the office instance.
-        office.addEvent("Perros Criollos", "26/10/2026", 1900, "Concierto",office.getVenues().get(0));
-        office.addEvent("Perras Criollas", "27/10/2028", 1900, "Concierto",office.getVenues().get(0));
+        try{
+          office.addEvent("Perros Criollos", "26/10/2026", 1900, "Concierto",office.getVenues().get(0));
+          office.addEvent("Perras Criollas", "27/10/2028", 1900, "Concierto",office.getVenues().get(0));
+        }catch(Exception e){
+
+        }
+        
 
         //Create location for first event.
         office.getEvents().get(0).createLocations("Palcos", 1000);
@@ -43,7 +53,12 @@ public class DemoData {
         );
 
         //Append the test customer to the customer list.
-        office.addCustomer(customer);
+        try{
+          office.addCustomer(customer);
+        }catch(Exception e){
+          
+        }
+        
         return office;
     }
 }

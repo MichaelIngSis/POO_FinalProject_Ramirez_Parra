@@ -2,7 +2,12 @@ package domain;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
-
+/**
+ * Represents an event within the ticket office management system
+ * This class handles event details, location management, capacity validation
+ * and ticket generation/storage.
+ */
+ 
 public class Event implements Serializable{
     private int eventId;
     private String eventName;
@@ -27,7 +32,6 @@ public class Event implements Serializable{
         this.tickets = new LinkedList<>();
         this.venue = venue;
     }
-    
 
     //Updates the event name if the new name is valid.
     public void setEventName(String newEventName){

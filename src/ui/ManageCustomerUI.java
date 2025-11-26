@@ -77,9 +77,12 @@ public class ManageCustomerUI extends JFrame {
             );
 
             if (opt == JOptionPane.YES_OPTION) {
-                office.removeCustomer(c.getCustomerId());  // usa ID
-                office.autosave();
-                refreshList(searchField.getText());
+                try{
+                    office.removeCustomer(c.getCustomerId());
+                    refreshList(searchField.getText());
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(this, "Ocurrio un error al guardar el archivo");
+                }
             }
         });
 

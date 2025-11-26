@@ -72,16 +72,18 @@ public class EditCustomerUI extends JFrame {
             }
 
             // Aplicar cambios usando setters existentes
-            customer.setCustomerAddress(addressField.getText());
-            customer.setCustomerEmail(emailField.getText());
-            customer.setCustomerPhoneNumber(phoneField.getText());
-
-            office.autosave();
-
-            JOptionPane.showMessageDialog(this, "Cliente actualizado correctamente.");
-
-            dispose();
-            new ManageCustomerUI(office).setVisible(true);
+            try{
+                customer.setCustomerAddress(addressField.getText());
+                customer.setCustomerEmail(emailField.getText());
+                customer.setCustomerPhoneNumber(phoneField.getText());
+                office.autosave();
+                JOptionPane.showMessageDialog(this, "Cliente actualizado correctamente.");   
+            }catch (Exception ex){
+                JOptionPane.showMessageDialog(this, "Error al guardar el archivo");
+            }finally{
+                dispose();
+                new ManageCustomerUI(office).setVisible(true);
+            }
         });
 
         // -------- ACCIÓN CANCELAR --------
