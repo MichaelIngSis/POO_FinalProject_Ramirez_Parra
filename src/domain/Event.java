@@ -7,7 +7,7 @@ import java.util.List;
  * This class handles event details, location management, capacity validation
  * and ticket generation/storage.
  */
- 
+
 public class Event implements Serializable{
     private int eventId;
     private String eventName;
