@@ -20,7 +20,6 @@ public class ManageCustomerUI extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        // ---- Panel de búsqueda ----
         JPanel searchPanel = new JPanel(new BorderLayout());
         JTextField searchField = new JTextField();
         JButton searchBtn = new JButton("Buscar");
@@ -30,12 +29,10 @@ public class ManageCustomerUI extends JFrame {
 
         add(searchPanel, BorderLayout.NORTH);
 
-        // ---- Lista de clientes ----
         list = new JList<>(model);
         refreshList("");
         add(new JScrollPane(list), BorderLayout.CENTER);
 
-        // ---- Panel inferior (botones CRUD) ----
         JPanel btnPanel = new JPanel(new GridLayout(1, 4, 10, 10));
 
         JButton addBtn = new JButton("Agregar");
@@ -50,18 +47,16 @@ public class ManageCustomerUI extends JFrame {
 
         add(btnPanel, BorderLayout.SOUTH);
 
-        // ---- Acción Agregar ----
         addBtn.addActionListener(e -> {
             new AddCustomerUI(office).setVisible(true);
             dispose();
         });
 
-        // ---- Acción Buscar ----
+
         searchBtn.addActionListener(e ->
                 refreshList(searchField.getText())
         );
 
-        // ---- Acción Eliminar ----
         deleteBtn.addActionListener(e -> {
             Customer c = list.getSelectedValue();
             if (c == null) {
@@ -86,7 +81,6 @@ public class ManageCustomerUI extends JFrame {
             }
         });
 
-        // ---- Acción Modificar ----
         editBtn.addActionListener(e -> {
             Customer c = list.getSelectedValue();
             if (c == null) {
@@ -98,7 +92,6 @@ public class ManageCustomerUI extends JFrame {
             dispose();
         });
 
-        // ---- Acción Volver ----
         backBtn.addActionListener(e -> {
             dispose();
             new MainMenu(office).setVisible(true);
@@ -106,9 +99,6 @@ public class ManageCustomerUI extends JFrame {
 
     }
 
-    // ------------------------------------------------------------
-    // Método para actualizar lista con filtro
-    // ------------------------------------------------------------
     private void refreshList(String filter) {
         model.clear();
         filter = filter.toLowerCase();

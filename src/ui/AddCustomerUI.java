@@ -55,9 +55,7 @@ public class AddCustomerUI extends JFrame{
                 String phoneNumber = phoneNumberField.getText();
 
                 Customer customer = new Customer(id, name, lastname, address, email, phoneNumber);
-
                 office.addCustomer(customer);
-
                 JOptionPane.showMessageDialog(this, "Cliente con id: " + customer.getCustomerId() + " agregado");
                 dispose();
                 new ManageCustomerUI(office).setVisible(true);

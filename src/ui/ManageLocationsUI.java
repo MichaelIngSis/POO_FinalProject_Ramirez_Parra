@@ -113,7 +113,6 @@ public class ManageLocationsUI extends JFrame {
             }
         });
 
-        // ---------- ELIMINAR ----------
         delBtn.addActionListener(e -> {
             Event ev = (Event) eventCombo.getSelectedItem();
             Location loc = list.getSelectedValue();

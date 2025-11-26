@@ -42,7 +42,6 @@ public class AddEventUI extends JFrame {
             }
         });
 
-
         JButton addBtn = new JButton("Agregar");
         JButton backBtn = new JButton("Volver");
 
@@ -70,28 +69,23 @@ public class AddEventUI extends JFrame {
                 String date = dateField.getText();
 
                 int time = Integer.parseInt(timeField.getText());
-                if (time < 0 || time >= 2400)
+                if (time < 0 || time >= 2400){
                     throw new IllegalArgumentException("La hora debe estar entre 0000 y 2359");
-
+                }
                 String type = (String) typeCombo.getSelectedItem();
-
                 Venue selectedVenue = (Venue) venueCombo.getSelectedItem();
                 if (selectedVenue == null){
                     throw new IllegalArgumentException("Debe seleccionar un venue.");
                 }
-
                 office.addEvent(name,date,time,type,selectedVenue);
-
-                JOptionPane.showMessageDialog(this, 
-                    "Evento agregado correctamente");
+                JOptionPane.showMessageDialog(this, "Evento agregado correctamente");
+                new ManageEventsUI(office).setVisible(true);
+                dispose();
                 
             } catch (IllegalArgumentException ex) {
                 JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
             } catch (Exception ex){
                 JOptionPane.showMessageDialog(this, "Error al guardar el archivo");
-            } finally{
-                new ManageEventsUI(office).setVisible(true);
-                dispose();
             }
         });
 

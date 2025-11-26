@@ -15,21 +15,18 @@ public class MainMenu extends JFrame {
         setTitle("Ticket Office");
         setSize(400, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); // Centrar ventana
+        setLocationRelativeTo(null);
 
-        // Panel vertical para botones
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(7, 1, 10, 10));
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // 1. Comprar ticket
         JButton buyTicketBtn = new JButton("Comprar Ticket");
         buyTicketBtn.addActionListener(e -> {
         new EventSelectionUI(office).setVisible(true);
         dispose();
         });
 
-        // 6. Consultar tickets de clientes
         JButton checkTicketsBtn = new JButton("Consultar Tickets de Clientes");
         checkTicketsBtn.addActionListener(e -> {
             new CheckCustomerTicketsUI(office).setVisible(true);
@@ -66,7 +63,6 @@ public class MainMenu extends JFrame {
             dispose();
         });
 
-        // Agregar botones al panel
         panel.add(buyTicketBtn);
         panel.add(checkTicketsBtn);
         panel.add(manageVenuesBtn);
@@ -74,7 +70,6 @@ public class MainMenu extends JFrame {
         panel.add(manageCustomerBtn);
         panel.add(manageLocationBtn);
         panel.add(manageEncodeBtn);
-
 
         add(panel);
     }

@@ -76,8 +76,7 @@ public class TicketPurchaseUI extends JFrame {
 
             // verificar disponibilidad
             if (qty > location.getAvailableSeats()) {
-                JOptionPane.showMessageDialog(this,
-                        "No hay suficientes asientos disponibles en esta localidad.");
+                JOptionPane.showMessageDialog(this,"No hay suficientes asientos disponibles en esta localidad.");
                 return;
             }
 
@@ -89,14 +88,13 @@ public class TicketPurchaseUI extends JFrame {
                     "Cliente: " + buyer.getCustomerName() + "\n" +
                     "Localidad: " + location.getLocationName() + "\n" +
                     "Tickets: " + qty);
+                    
+                    dispose();
+                    new MainMenu(office).setVisible(true);
             } catch(IllegalArgumentException | IllegalStateException ex){
-                JOptionPane.showMessageDialog(this,
-                ex.getMessage());
+                JOptionPane.showMessageDialog(this, ex.getMessage());
             }catch(Exception ex){
                 JOptionPane.showMessageDialog(this, "Se presenta un problema al guardar el archivo");
-            }finally{
-                dispose();
-                new MainMenu(office).setVisible(true);
             }
         });
 

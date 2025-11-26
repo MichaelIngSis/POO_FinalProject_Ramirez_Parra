@@ -99,16 +99,13 @@ public class ManageEventsUI extends JFrame {
             new EditEventUI(office, ev).setVisible(true);
         });
 
-        // ---- Acción Volver ----
         backBtn.addActionListener(e -> {
             dispose();
             new MainMenu(office).setVisible(true);
         });
     }
 
-    // --------------------------
-    // Refrescar lista con filtro
-    // --------------------------
+
     private void refreshList(String filter) {
         model.clear();
 

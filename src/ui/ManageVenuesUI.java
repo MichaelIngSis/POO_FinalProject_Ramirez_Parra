@@ -20,7 +20,6 @@ public class ManageVenuesUI extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        // ------- PANEL SUPERIOR: BÚSQUEDA -------
         JPanel searchPanel = new JPanel(new BorderLayout());
         JTextField searchField = new JTextField();
         JButton searchBtn = new JButton("Buscar");
@@ -29,12 +28,10 @@ public class ManageVenuesUI extends JFrame {
 
         add(searchPanel, BorderLayout.NORTH);
 
-        // ------- LISTA CENTRO -------
         list = new JList<>(model);
-        refreshList("");   // ← carga todo
+        refreshList("");
         add(new JScrollPane(list), BorderLayout.CENTER);
 
-        // ------- PANEL BOTONES -------
         JPanel btnPanel = new JPanel();
         JButton addBtn = new JButton("Agregar");
         JButton editBtn = new JButton("Editar");
@@ -47,17 +44,14 @@ public class ManageVenuesUI extends JFrame {
         btnPanel.add(backBtn);
         add(btnPanel, BorderLayout.SOUTH);
 
-        // ======== Acción buscar ========
         searchBtn.addActionListener(e ->
                 refreshList(searchField.getText()));
 
-        // ======== Acción agregar ========
         addBtn.addActionListener(e -> {
             dispose();
-            new AddVenueUI(office).setVisible(true);   // UI para agregar
+            new AddVenueUI(office).setVisible(true);
         });
 
-        // ======== Acción editar ========
         editBtn.addActionListener(e -> {
             Venue v = list.getSelectedValue();
             if (v == null) {
@@ -68,7 +62,6 @@ public class ManageVenuesUI extends JFrame {
             new EditVenueUI(office, v).setVisible(true);
         });
 
-        // ======== Acción borrar ========
         delBtn.addActionListener(e -> {
             Venue v = list.getSelectedValue();
             if (v == null) {
@@ -82,8 +75,7 @@ public class ManageVenuesUI extends JFrame {
                 JOptionPane.showMessageDialog(this,"Error al guardar el archivo");
             }
         });
-
-        // ======== Acción volver ========
+        
         backBtn.addActionListener(e -> {
             dispose();
             new MainMenu(office).setVisible(true);

@@ -40,6 +40,7 @@ public class EditVenueUI extends JFrame{
                 venue.setVenueCharacteristic((String) type.getSelectedItem());
                 venue.setVenueAddress(addr.getText());
                 venue.setVenueCapacity(Integer.parseInt(cap.getText()));
+                JOptionPane.showMessageDialog(this, "Se ha actualizado correctamente");
                 office.autosave();
             }catch(Exception ex){
                 JOptionPane.showMessageDialog(this, "Error al guardar el archivo");

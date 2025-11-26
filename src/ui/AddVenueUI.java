@@ -51,20 +51,14 @@ public class AddVenueUI extends JFrame {
                 String name = nameField.getText().trim();
                 String address = addressField.getText().trim();
                 int capacity = Integer.parseInt(capacityField.getText());
-
-                if (capacity <= 0)
+                if (capacity <= 0){
                     throw new IllegalArgumentException("La capacidad debe ser mayor que cero.");
-
+                }
                 String characteristic = (String) characteristicCombo.getSelectedItem();
-
                 office.addVenue(name, address, capacity, characteristic);
-
-                JOptionPane.showMessageDialog(this,
-                        "Venue agregado correctamente");
-
+                JOptionPane.showMessageDialog(this, "Venue agregado correctamente");
                 dispose();
                 new ManageVenuesUI(office).setVisible(true);
-
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
             }

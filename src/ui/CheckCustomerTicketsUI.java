@@ -63,7 +63,7 @@ public class CheckCustomerTicketsUI extends JFrame {
         StringBuilder sb = new StringBuilder();
 
         sb.append("Tickets de: ").append(c.getCustomerName())
-          .append(" ").append(c.getCustomerLastname()).append("\n\n");
+        .append(" ").append(c.getCustomerLastname()).append("\n\n");
 
         if (c.getTickets().isEmpty()) {
             sb.append("Este cliente no tiene tickets.");
