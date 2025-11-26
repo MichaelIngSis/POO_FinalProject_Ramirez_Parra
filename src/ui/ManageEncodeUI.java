@@ -24,17 +24,33 @@ public class ManageEncodeUI extends JFrame {
 
         JButton encodeEventsBtn = new JButton("Exportar Eventos");
         encodeEventsBtn.addActionListener(e -> {
-            office.encoderEvents(office.getEvents());
+            try{
+                office.encoderEvents(office.getEvents());
+                JOptionPane.showMessageDialog(this, "Archivo guardado correctamente");
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(this, "Se ha presentado un error al guardar el archivo");
+            }
         });
 
         JButton encodeCustomersBtn = new JButton("Exportar Clientes");
         encodeCustomersBtn.addActionListener(e -> {
-            office.encoderCustomer(office.getCustomers());
+            try{
+                office.encoderCustomer(office.getCustomers());
+                JOptionPane.showMessageDialog(this, "Archivo guardado correctamente");
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(this, "Se ha presentado un error al guardar el archivo");
+            }
         });
 
         JButton encodeVenuesBtn = new JButton("Exportar Sitios de Eventos");
         encodeVenuesBtn.addActionListener(e -> {
-            office.encoderVenues(office.getVenues());
+            try{
+                office.encoderVenues(office.getVenues());
+                JOptionPane.showMessageDialog(this, "Archivo guardado correctamente");
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(this, "Se ha presentado un error al guardar el archivo");
+            }
+            
         });
 
         mainPanel.add(encodeEventsBtn);

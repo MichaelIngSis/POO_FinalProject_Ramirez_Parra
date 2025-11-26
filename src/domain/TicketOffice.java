@@ -255,7 +255,7 @@ public class TicketOffice implements Serializable{
     * Encodes a list of Event objects into a CSV format (using a custom CSVEncoder implementation)
     * and saves the resulting data to a file named "CSVEvents.csv". 
     */
-    public void encoderEvents(List<Event> listEvents){
+    public void encoderEvents(List<Event> listEvents) throws IOException{
         CSVEncoder<Event> encoder = new CSVEncoder<>(){
             @Override
             public String[] getFieldNames() {
@@ -291,7 +291,7 @@ public class TicketOffice implements Serializable{
     * Encodes a list of Customer objects into a CSV format (using a custom CSVEncoder implementation)
     * and saves the resulting data to a file named "CSVCustomers.csv" 
     */
-    public void encoderCustomer(List<Customer> listCustomers){
+    public void encoderCustomer(List<Customer> listCustomers) throws IOException{
         CSVEncoder<Customer> encoder = new CSVEncoder<>(){
             @Override
             public String[] getFieldNames() {
@@ -326,7 +326,7 @@ public class TicketOffice implements Serializable{
     * Encodes a list of Venue objects into a CSV format (using a custom CSVEncoder implementation)
     * and saves the resulting data to a file named "CSVVenues.csv".
     */
-    public void encoderVenues(List<Venue> listVenues){
+    public void encoderVenues(List<Venue> listVenues) throws IOException{
         CSVEncoder<Venue> encoder = new CSVEncoder<>(){
             @Override
             public String[] getFieldNames() {
@@ -359,11 +359,9 @@ public class TicketOffice implements Serializable{
     * Saves the provided CSV formatted content string to a specified file name using a FileWriter.
     * Uses try-with-resources to ensure the writer is closed automatically
     */
-    public static void saveCSV(String fileName, String csvContent){
+    public static void saveCSV(String fileName, String csvContent) throws IOException{
         try(FileWriter writer = new FileWriter(fileName)){
             writer.write(csvContent);
-        }catch(IOException e){
-            System.err.println("Error al crear el archivo csv: " + e.getMessage());
         }
     }
 
