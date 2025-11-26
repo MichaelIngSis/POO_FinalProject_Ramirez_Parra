@@ -44,7 +44,7 @@ public class TicketPurchaseUI extends JFrame {
         // --- Selección de Localidad ---
         JComboBox<String> locationBox = new JComboBox<>();
         for (Location loc : event.getLocations()) {
-            locationBox.addItem(loc.getLocationName() + " (Disp: " + loc.getAvailableSeats() + ")");
+            locationBox.addItem(loc.getLocationName() + " (Disp:" + loc.getAvailableSeats() + "): "+"$"+loc.getLocationPrice());
         }
 
         // --- Cantidad de tickets ---
@@ -80,21 +80,33 @@ public class TicketPurchaseUI extends JFrame {
                 return;
             }
 
+            int opt = JOptionPane.showConfirmDialog(
+                    this,
+                    "¿Seguro que desea realizar esta compra?\n"+
+                    "Tickets: " + qty + "\n" +
+                    "Precio ha pagar: " + qty*location.getLocationPrice(),
+                    "Confirmar",
+                    JOptionPane.YES_NO_OPTION
+            );
+
             //Proceso de compra
-            try{
-                office.sellTickets(event, location, buyer, qty);
-                JOptionPane.showMessageDialog(this,
-                    "Compra realizada con éxito.\n" +
-                    "Cliente: " + buyer.getCustomerName() + "\n" +
-                    "Localidad: " + location.getLocationName() + "\n" +
-                    "Tickets: " + qty);
+            if(opt == JOptionPane.YES_OPTION){
+                try{
+                    office.sellTickets(event, location, buyer, qty);
+                    JOptionPane.showMessageDialog(this,
+                        "Compra realizada con éxito.\n" +
+                        "Cliente: " + buyer.getCustomerName() + "\n" +
+                        "Localidad: " + location.getLocationName() + "\n" +
+                        "Tickets: " + qty + "\n" +
+                        "Precio Pagado: " + qty*location.getLocationPrice());
                     
-                    dispose();
-                    new MainMenu(office).setVisible(true);
-            } catch(IllegalArgumentException | IllegalStateException ex){
-                JOptionPane.showMessageDialog(this, ex.getMessage());
-            }catch(Exception ex){
-                JOptionPane.showMessageDialog(this, "Se presenta un problema al guardar el archivo");
+                        dispose();
+                        new MainMenu(office).setVisible(true);
+                } catch(IllegalArgumentException | IllegalStateException ex){
+                    JOptionPane.showMessageDialog(this, ex.getMessage());
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(this, "Se presenta un problema al guardar el archivo");
+                }
             }
         });
 

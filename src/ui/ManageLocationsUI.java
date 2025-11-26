@@ -79,9 +79,13 @@ public class ManageLocationsUI extends JFrame {
             String capStr = JOptionPane.showInputDialog("Capacidad:");
             if (capStr == null) return;
 
+            String priceStr = JOptionPane.showInputDialog("Precio Localidad");
+            if (priceStr == null) return;
+
             try {
                 int cap = Integer.parseInt(capStr);
-                office.addLocationToEvent(ev, name, cap);
+                int price = Integer.parseInt(priceStr);
+                office.addLocationToEvent(ev, name, cap, price);
                 refreshList("");
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage());

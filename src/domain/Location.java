@@ -12,12 +12,14 @@ public class Location implements Serializable{
     private int locationCapacity; 
     private int availableSeats;
     private int nextSeatNumber;
+    private int locationPrice;
 
     //Constructor to initialize a Location object with capacity and seat tracking data
-    public Location(String locationName, int locationCapacity){
+    public Location(String locationName, int locationCapacity, int locationPrice){
         this.locationName = locationName;
         this.locationCapacity = locationCapacity;
         this.availableSeats = locationCapacity;
+        this.locationPrice = locationPrice;
         this.nextSeatNumber = 1;
     }
 
@@ -55,10 +57,11 @@ public class Location implements Serializable{
     public String getLocationName(){return locationName;}
     public int getLocationCapacity(){return locationCapacity;}
     public int getAvailableSeats(){return availableSeats;}
+    public int getLocationPrice(){return locationPrice;}
 
     //Generates a display string for the location showing name and capacity
     @Override
     public String toString() {
-        return locationName + " - " + locationCapacity ;
+        return locationName + " - " + locationCapacity + " - " + locationPrice;
     }
 }

@@ -67,11 +67,11 @@ public class Event implements Serializable{
     }
 
     //Creates a new location if the capacity is valid, otherwise throws an exception
-    public void createLocations(String locationName, int locationCapacity){
+    public void createLocations(String locationName, int locationCapacity, int locationPrice){
         if(!isLocationCapacityValid(locationCapacity)){
             throw new IllegalArgumentException("No se puede agregar la localidad. Capacidad Excedida");
         }
-        locations.add(new Location(locationName, locationCapacity));
+        locations.add(new Location(locationName, locationCapacity, locationPrice));
     }
 
     

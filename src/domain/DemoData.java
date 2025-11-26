@@ -35,12 +35,12 @@ public class DemoData {
         
 
         //Create location for first event.
-        office.getEvents().get(0).createLocations("Palcos", 1000);
-        office.getEvents().get(0).createLocations("General", 2000);
+        office.getEvents().get(0).createLocations("Palcos", 1000, 20000);
+        office.getEvents().get(0).createLocations("General", 2000, 15000);
         
         //Create location for second event
-        office.getEvents().get(1).createLocations("Palcos", 1000);
-        office.getEvents().get(1).createLocations("General", 2000);
+        office.getEvents().get(1).createLocations("Palcos", 1000,20000);
+        office.getEvents().get(1).createLocations("General", 2000, 15000);
 
         //Create a test customer
         Customer customer = new Customer(

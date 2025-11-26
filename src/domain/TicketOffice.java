@@ -140,11 +140,11 @@ public class TicketOffice implements Serializable{
     }
 
     // Assigns a new location to an existing event, validates the input, and persists the changes to storage
-    public void addLocationToEvent(Event event, String name, int capacity) throws Exception{
+    public void addLocationToEvent(Event event, String name, int capacity, int price) throws Exception{
         if (event == null) {
             throw new IllegalArgumentException("Evento no encontrado");
         } 
-        event.createLocations(name, capacity);
+        event.createLocations(name, capacity, price);
         autosave();            
     }
 
