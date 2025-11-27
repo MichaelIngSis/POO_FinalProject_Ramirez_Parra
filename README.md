@@ -26,3 +26,13 @@ En este orden de ideas, las instrucciones para ejecutar el programa de forma cor
 7. Al finalizar si desea conservar en un archivo CSV los datos de los clientes, eventos o venues, puede realizarlo dando clic en el botón que dice "Exportar CSV", allí podra seleccionar los datos que desea exportar. 
 
 ## Ejemplo de Entrada/Salida
+
+
+
+
+
+
+
+## Enlace Diagrama de Clase
+
+https://github.com/MichaelIngSis/POO_FinalProject_Ramirez/blob/b64f2f02cabb80f6463cc43cd6102d68b778c98b/Diagrama_de_Clase.drawio.png
