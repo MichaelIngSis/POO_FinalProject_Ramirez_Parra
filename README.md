@@ -28,7 +28,7 @@ En este orden de ideas, las instrucciones para ejecutar el programa de forma cor
 ## Ejemplo de Entrada/Salida
 
 Menú de la Oficina:
-![image alt] (https://github.com/MichaelIngSis/POO_FinalProject_Ramirez/blob/54c51b0355a48d7f6afb6ebb12b54f090a23961b/Images_Example/Captura%20de%20pantalla%202025-11-26%20204242.png)
+![image alt](https://github.com/MichaelIngSis/POO_FinalProject_Ramirez/blob/54c51b0355a48d7f6afb6ebb12b54f090a23961b/Images_Example/Captura%20de%20pantalla%202025-11-26%20204242.png)
 
 
 
