@@ -5,6 +5,8 @@ import domain.TicketOffice;
 import domain.Venue;
 
 import javax.swing.*;
+import javax.swing.text.MaskFormatter;
+
 import java.awt.*;
 
 public class EditEventUI extends JFrame {
@@ -23,8 +25,15 @@ public class EditEventUI extends JFrame {
 
         JTextField nameField = new JTextField(event.getEventName());
         JTextField dateField = new JTextField(event.getEventDate());
-        JTextField timeField = new JTextField(String.valueOf(event.getEventTime()));
-
+        MaskFormatter mf = null;
+        try{
+            mf = new MaskFormatter("##:##");
+            mf.setPlaceholderCharacter('0');
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error con el formato de la hora");
+        }
+        JFormattedTextField timeField = new JFormattedTextField(mf);
+        timeField.setText(String.valueOf(event.getEventTime()));
 
         String[] types = {"Concierto", "Teatro", "Deporte", "Cine", "Otro"};
         JComboBox<String> typeCombo = new JComboBox<>(types);
@@ -61,7 +70,7 @@ public class EditEventUI extends JFrame {
         saveBtn.addActionListener(e -> {
 
             try {
-                int time = Integer.parseInt(timeField.getText());
+                int time = Integer.parseInt(timeField.getText().replace(":",""));
                 if (time < 0 || time >= 2400) {
                     throw new IllegalArgumentException("La hora debe estar entre 0000 y 2359");
                 }

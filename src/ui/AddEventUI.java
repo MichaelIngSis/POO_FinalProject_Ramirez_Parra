@@ -4,6 +4,8 @@ import domain.TicketOffice;
 import domain.Venue;
 
 import javax.swing.*;
+import javax.swing.text.MaskFormatter;
+
 import java.awt.*;
 import java.util.List;
 
@@ -17,16 +19,22 @@ public class AddEventUI extends JFrame {
         setLayout(new GridLayout(6, 2));
 
         JTextField nameField = new JTextField();
-        JTextField dateField = new JTextField("2025-01-01");   // String
-        JTextField timeField = new JTextField("1900");         // int HHmm
+        JTextField dateField = new JTextField("2025-01-01");
+        MaskFormatter mf = null;
+        try{
+            mf = new MaskFormatter("##:##");
+            mf.setPlaceholderCharacter('0');
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error con el formato de la hora");
+        }
+        JFormattedTextField timeField = new JFormattedTextField(mf);        
 
         String[] types = {"Concierto", "Teatro", "Deporte", "Cine", "Otro"};
         JComboBox<String> typeCombo = new JComboBox<>(types);
 
-        List<Venue> venues = office.getVenues();  // Debes tener este método
+        List<Venue> venues = office.getVenues();
         JComboBox<Venue> venueCombo = new JComboBox<>(venues.toArray(new Venue[0]));
 
-        // Para que se muestre el nombre del venue
         venueCombo.setRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(
@@ -68,9 +76,10 @@ public class AddEventUI extends JFrame {
                 String name = nameField.getText();
                 String date = dateField.getText();
 
-                int time = Integer.parseInt(timeField.getText());
+                String timeStr = timeField.getText().replace(":","");
+                int time = Integer.parseInt(timeStr);
                 if (time < 0 || time >= 2400){
-                    throw new IllegalArgumentException("La hora debe estar entre 0000 y 2359");
+                    throw new IllegalArgumentException("La hora debe estar entre 00:00 y 23:59");
                 }
                 String type = (String) typeCombo.getSelectedItem();
                 Venue selectedVenue = (Venue) venueCombo.getSelectedItem();
