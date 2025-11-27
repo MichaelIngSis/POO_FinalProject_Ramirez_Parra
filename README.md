@@ -39,7 +39,9 @@ Click en agregar eventos, abre una pantalla para ingresar los datos del evento:
 
 ![image alt](https://github.com/MichaelIngSis/POO_FinalProject_Ramirez/blob/16de300a5d61da099f0c5e9b4f6d572766a4171d/Images_Example/Captura%20de%20pantalla%202025-11-26%20204352.png)
 
-Click en "confirmar"
+Click en "Agregar", muestra el siguiente mensaje: 
+
+![image alt]()
 
 
 
