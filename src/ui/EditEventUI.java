@@ -88,9 +88,6 @@ public class EditEventUI extends JFrame {
             }
         });
 
-        // -----------------------
-        // ACCIÓN CANCELAR
-        // -----------------------
         backBtn.addActionListener(e -> {
             dispose();
             new ManageEventsUI(office).setVisible(true);

@@ -21,7 +21,6 @@ public class CheckCustomerTicketsUI extends JFrame {
 
         setLayout(new BorderLayout());
 
-        // LISTA DE CLIENTES
         DefaultListModel<Customer> model = new DefaultListModel<>();
         for (Customer c : office.getCustomers()) {
             model.addElement(c);
@@ -30,7 +29,6 @@ public class CheckCustomerTicketsUI extends JFrame {
         JList<Customer> customerList = new JList<>(model);
         JScrollPane scroll = new JScrollPane(customerList);
 
-        // PANEL DERECHO PARA TICKETS
         JTextArea ticketArea = new JTextArea();
         ticketArea.setEditable(false);
         JScrollPane ticketScroll = new JScrollPane(ticketArea);
@@ -39,7 +37,6 @@ public class CheckCustomerTicketsUI extends JFrame {
         split.setDividerLocation(150);
         add(split, BorderLayout.CENTER);
 
-        // Acción: Cuando seleccionas un cliente → mostrar sus tickets
         customerList.addListSelectionListener(e -> {
             Customer selected = customerList.getSelectedValue();
             if (selected != null) {
@@ -47,7 +44,6 @@ public class CheckCustomerTicketsUI extends JFrame {
             }
         });
 
-        // BOTÓN VOLVER
         JButton backBtn = new JButton("Volver");
         backBtn.addActionListener(e -> {
             new MainMenu(office).setVisible(true);

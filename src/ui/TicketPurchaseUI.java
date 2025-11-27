@@ -22,13 +22,11 @@ public class TicketPurchaseUI extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new GridLayout(9, 1, 10, 10));
 
-        // --- Info del evento ---
         JLabel eventInfo = new JLabel(
                 "Evento: " + event.getEventName(),
                 SwingConstants.CENTER
         );
 
-        // --- Selección de cliente ---
         JComboBox<Customer> clientBox = new JComboBox<>();
         for (Customer c : office.getCustomers()) {
             clientBox.addItem(c);
@@ -41,13 +39,11 @@ public class TicketPurchaseUI extends JFrame {
             return;
         }
 
-        // --- Selección de Localidad ---
         JComboBox<String> locationBox = new JComboBox<>();
         for (Location loc : event.getLocations()) {
             locationBox.addItem(loc.getLocationName() + " (Disp:" + loc.getAvailableSeats() + "): "+"$"+loc.getLocationPrice());
         }
 
-        // --- Cantidad de tickets ---
         SpinnerNumberModel qtyModel =
                 new SpinnerNumberModel(1, 1, 100, 1);
         JSpinner qtySpinner = new JSpinner(qtyModel);
@@ -55,7 +51,6 @@ public class TicketPurchaseUI extends JFrame {
         JButton confirmBtn = new JButton("Confirmar Compra");
         JButton backBtn = new JButton("Volver");
 
-        // --- Acción de comprar ---
         confirmBtn.addActionListener(e -> {
             int clientIndex = clientBox.getSelectedIndex();
             int locIndex = locationBox.getSelectedIndex();
@@ -74,7 +69,6 @@ public class TicketPurchaseUI extends JFrame {
             Customer buyer = office.getCustomers().get(clientIndex);
             Location location = event.getLocations().get(locIndex);
 
-            // verificar disponibilidad
             if (qty > location.getAvailableSeats()) {
                 JOptionPane.showMessageDialog(this,"No hay suficientes asientos disponibles en esta localidad.");
                 return;
@@ -89,7 +83,6 @@ public class TicketPurchaseUI extends JFrame {
                     JOptionPane.YES_NO_OPTION
             );
 
-            //Proceso de compra
             if(opt == JOptionPane.YES_OPTION){
                 try{
                     office.sellTickets(event, location, buyer, qty);

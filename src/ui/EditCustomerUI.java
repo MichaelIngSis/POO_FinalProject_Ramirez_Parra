@@ -20,11 +20,9 @@ public class EditCustomerUI extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        // -------- PANEL CENTRAL FORMULARIO --------
         JPanel form = new JPanel(new GridLayout(6, 2, 10, 10));
         form.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // Labels + Campos
         form.add(new JLabel("ID (no editable):"));
         JTextField idField = new JTextField(String.valueOf(customer.getCustomerId()));
         idField.setEditable(false);
@@ -52,7 +50,6 @@ public class EditCustomerUI extends JFrame {
 
         add(form, BorderLayout.CENTER);
 
-        // -------- PANEL BOTONES --------
         JPanel btnPanel = new JPanel(new GridLayout(1, 2, 15, 10));
 
         JButton saveBtn = new JButton("Guardar");
@@ -63,7 +60,6 @@ public class EditCustomerUI extends JFrame {
 
         add(btnPanel, BorderLayout.SOUTH);
 
-        // -------- ACCIÓN GUARDAR --------
         saveBtn.addActionListener(e -> {
             if (nameField.getText().isBlank() || lastnameField.getText().isBlank()) {
                 JOptionPane.showMessageDialog(this,
@@ -71,7 +67,6 @@ public class EditCustomerUI extends JFrame {
                 return;
             }
 
-            // Aplicar cambios usando setters existentes
             try{
                 customer.setCustomerAddress(addressField.getText());
                 customer.setCustomerEmail(emailField.getText());
@@ -86,7 +81,6 @@ public class EditCustomerUI extends JFrame {
             }
         });
 
-        // -------- ACCIÓN CANCELAR --------
         backBtn.addActionListener(e -> {
             dispose();
             new ManageCustomerUI(office).setVisible(true);

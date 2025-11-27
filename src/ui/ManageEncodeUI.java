@@ -17,7 +17,6 @@ public class ManageEncodeUI extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(10,10));
 
-        // ---------- PANEL SUPERIOR CON BOTONES GRANDES ----------
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(3, 1, 10, 10));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -57,12 +56,11 @@ public class ManageEncodeUI extends JFrame {
         mainPanel.add(encodeCustomersBtn);
         mainPanel.add(encodeVenuesBtn);
 
-        // ---------- PANEL INFERIOR PARA EL BOTÓN PEQUEÑO ----------
         JPanel bottomPanel = new JPanel();
         bottomPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
 
         JButton backBtn = new JButton("Volver");
-        backBtn.setPreferredSize(new Dimension(100, 30)); // tamaño más pequeño
+        backBtn.setPreferredSize(new Dimension(100, 30));
         backBtn.addActionListener(e -> {
             new MainMenu(office).setVisible(true);
             dispose();
@@ -70,7 +68,6 @@ public class ManageEncodeUI extends JFrame {
 
         bottomPanel.add(backBtn);
 
-        // Agregar paneles
         add(mainPanel, BorderLayout.CENTER);
         add(bottomPanel, BorderLayout.SOUTH);
     }

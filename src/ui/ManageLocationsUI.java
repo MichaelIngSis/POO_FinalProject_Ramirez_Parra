@@ -22,7 +22,6 @@ public class ManageLocationsUI extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        // ---------- PANEL SUPERIOR ----------
         JPanel topPanel = new JPanel(new GridLayout(2, 1));
 
         eventCombo = new JComboBox<>();
@@ -41,13 +40,11 @@ public class ManageLocationsUI extends JFrame {
 
         add(topPanel, BorderLayout.NORTH);
 
-        // ---------- LISTA ----------
         list = new JList<>(model);
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         refreshList("");
         add(new JScrollPane(list), BorderLayout.CENTER);
 
-        // ---------- BOTONES ----------
         JPanel btnPanel = new JPanel();
 
         JButton addBtn = new JButton("Agregar");
@@ -62,13 +59,11 @@ public class ManageLocationsUI extends JFrame {
 
         add(btnPanel, BorderLayout.SOUTH);
 
-        // ---------- LISTENERS ----------
         eventCombo.addActionListener(e -> refreshList(""));
 
         searchBtn.addActionListener(e ->
                 refreshList(searchField.getText()));
 
-        // ---------- AGREGAR ----------
         addBtn.addActionListener(e -> {
             Event ev = (Event) eventCombo.getSelectedItem();
             if (ev == null) return;
@@ -92,7 +87,6 @@ public class ManageLocationsUI extends JFrame {
             }
         });
 
-        // ---------- EDITAR ----------
         editBtn.addActionListener(e -> {
             Event ev = (Event) eventCombo.getSelectedItem();
             Location loc = list.getSelectedValue();
@@ -142,7 +136,6 @@ public class ManageLocationsUI extends JFrame {
             }
         });
 
-        // ---------- VOLVER ----------
         backBtn.addActionListener(e -> {
             new MainMenu(office).setVisible(true);
             dispose();

@@ -20,7 +20,6 @@ public class ManageEventsUI extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        // ---- Panel de búsqueda ----
         JPanel searchPanel = new JPanel(new BorderLayout());
         JTextField searchField = new JTextField();
         JButton searchBtn = new JButton("Buscar");
@@ -30,12 +29,10 @@ public class ManageEventsUI extends JFrame {
 
         add(searchPanel, BorderLayout.NORTH);
 
-        // ---- Lista de eventos ----
         list = new JList<>(model);
         refreshList("");
         add(new JScrollPane(list), BorderLayout.CENTER);
 
-        // ---- Panel inferior (botones CRUD) ----
         JPanel btnPanel = new JPanel(new GridLayout(1, 4, 10, 10));
 
         JButton addBtn = new JButton("Agregar");
@@ -56,13 +53,10 @@ public class ManageEventsUI extends JFrame {
             new AddEventUI(office).setVisible(true);
         });
 
-
-        // ---- Acción Busqueda ----
         searchBtn.addActionListener(e ->
                 refreshList(searchField.getText())
         );
 
-        // ---- Acción Eliminar ----
         deleteBtn.addActionListener(e -> {
             Event ev = list.getSelectedValue();
             if (ev == null) {
@@ -88,7 +82,6 @@ public class ManageEventsUI extends JFrame {
             }
         });
 
-        // ---- Acción Editar ----
         editBtn.addActionListener(e -> {
             Event ev = list.getSelectedValue();
             if (ev == null) {

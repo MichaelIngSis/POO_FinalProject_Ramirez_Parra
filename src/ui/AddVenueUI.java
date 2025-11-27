@@ -18,7 +18,6 @@ public class AddVenueUI extends JFrame {
         JTextField addressField = new JTextField();
         JTextField capacityField = new JTextField();
 
-        // Características del venue
         String[] characteristics = {
                 "Eventos de Música", 
                 "Eventos de Vehiculos", 
@@ -64,7 +63,6 @@ public class AddVenueUI extends JFrame {
             }
         });
 
-        // ======== Acción volver ========
         backBtn.addActionListener(e -> {
             new ManageVenuesUI(office).setVisible(true);
             dispose();
