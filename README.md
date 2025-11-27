@@ -33,19 +33,19 @@ Menú de la Oficina:
 
 ![image alt](https://github.com/MichaelIngSis/POO_FinalProject_Ramirez/blob/54c51b0355a48d7f6afb6ebb12b54f090a23961b/Images_Example/Captura%20de%20pantalla%202025-11-26%20204242.png)
 
-Click en administrar eventos, muestra el menú exclusivo para eventos:
+Al presionar click en administrar eventos, muestra el menú de administración de eventos:
 
 ![image alt](https://github.com/MichaelIngSis/POO_FinalProject_Ramirez/blob/611d013749d220a3f55d85322463009884f5df88/Images_Example/Captura%20de%20pantalla%202025-11-26%20204314.png)
 
-Click en agregar eventos, abre una pantalla para ingresar los datos del evento:
+Posteriormente al darle click en el botón de agregar eventos, se abre una pantalla para ingresar los datos del evento:
 
 ![image alt](https://github.com/MichaelIngSis/POO_FinalProject_Ramirez/blob/16de300a5d61da099f0c5e9b4f6d572766a4171d/Images_Example/Captura%20de%20pantalla%202025-11-26%20204352.png)
 
-Click en "Agregar", muestra el siguiente mensaje: 
+En el menú que se abre y despues de haber ingresado los datos del evento, se presiona click en "Agregar", el sistema procede a mostrar por pantalla el siguiente mensaje: 
 
 ![image alt](https://github.com/MichaelIngSis/POO_FinalProject_Ramirez/blob/6786bc8a095256bcafce8debae3714203b3b78eb/Images_Example/Captura%20de%20pantalla%202025-11-26%20204402.png)
 
-Posteriormente sale al administrador de eventos y se muestra la lista de eventos donde se ha agregado:
+Nos devuelve automaticamente al administrador de eventos y se muestra la lista de eventos donde se ha agregado:
 
 ![image alt](https://github.com/MichaelIngSis/POO_FinalProject_Ramirez/blob/fb190d40c70f266a05a360210c7d32ea80bcec6e/Images_Example/Captura%20de%20pantalla%202025-11-26%20204416.png)
 
