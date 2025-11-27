@@ -41,8 +41,19 @@ Click en agregar eventos, abre una pantalla para ingresar los datos del evento:
 
 Click en "Agregar", muestra el siguiente mensaje: 
 
-![image alt]()
+![image alt](https://github.com/MichaelIngSis/POO_FinalProject_Ramirez/blob/6786bc8a095256bcafce8debae3714203b3b78eb/Images_Example/Captura%20de%20pantalla%202025-11-26%20204402.png)
 
+Posteriormente sale al administrador de eventos y se muestra la lista de eventos donde se ha agregado:
+
+![image alt]
+
+Si deseamos exportar csv, entonces le damos click en exportar eventos:
+
+![image alt]
+
+Finalmente, comprobamos como quedo nuestro CSV:
+
+![image alt]
 
 
 
